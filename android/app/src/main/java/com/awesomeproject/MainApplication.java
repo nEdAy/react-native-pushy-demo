@@ -12,6 +12,8 @@ import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
 import com.awesomeproject.newarchitecture.MainApplicationReactNativeHost;
 
+import cn.reactnative.modules.update.UpdateContext;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -31,6 +33,12 @@ public class MainApplication extends Application implements ReactApplication {
                     // Packages that cannot be autolinked yet can be added manually here, for example:
                     // packages.add(new MyReactNativePackage());
                     return packages;
+                }
+
+                // 注意这一段在 ReactNativeHost 内部！
+                @Override
+                protected String getJSBundleFile() {
+                    return UpdateContext.getBundleUrl(MainApplication.this);
                 }
 
                 @Override
