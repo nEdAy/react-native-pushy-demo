@@ -26,6 +26,13 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Platform from 'react-native/Libraries/Utilities/Platform';
+
+import {simpleUpdate} from 'react-native-update';
+import _updateConfig from './update.json';
+
+const {appKey} = _updateConfig[Platform.OS];
+
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 const Section = ({children, title}): Node => {
@@ -114,4 +121,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default simpleUpdate(App, {appKey});
